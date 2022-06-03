@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Makale.Entities.Note>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <h2 style="color:darkred">Notlar</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <p>
+            <a href="/Note/Create" class="btn btn-primary">
+                <span class="glyphicon glyphicon-plus"></span> <b>Yeni</b>
+            </a>
+        </p>
+        <table class="table">
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Kategori.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Text)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LikeCount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsDraft)
+                </th>
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.Kategori.Title)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Text)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LikeCount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsDraft)
+                    </td>
+
+                    <td style="display:flex">
+                        <button class="btn btn-default btn-xs" data-notid="@item.ID" data-toggle="modal" data-target="#ModalComment">
+                            <span class="glyphicon glyphicon-comment "></span>
+                        </button>
+                        <a href="/Note/Edit/@item.ID" class="btn btn-warning btn-xs" title="Düzenle">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                        <br />
+                        <a href="/Note/Details/@item.ID" class="btn btn-info btn-xs" title="Detay">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </a>
+                        <br />
+                        <a href="/Note/Delete/@item.ID" class="btn btn-danger btn-xs" title="Sil">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="ModalComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" id="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Yorumlar</h4>
+            </div>
+            <div class="modal-body" id="modal-body">
+                ...
+            </div>
+            <div class="modal-footer" id="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/CommentScript.js"></script>

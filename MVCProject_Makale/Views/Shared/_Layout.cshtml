@@ -1,0 +1,171 @@
+﻿@using Makale.Entities
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Makale Web Hoş Geldiniz</title>
+
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/shop-homepage.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    @{ 
+        Kullanici user = null;
+        if (Session["login"]!=null)
+        {
+            user = (Kullanici)Session["login"];
+        }
+    }
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/Home/Index">Makaleler</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    @if (user != null)
+                    {
+                        <li class="dropdown">
+                            <a href="/Home/" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="true" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-wrench"></span> Yönetim
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/Note/Create"><span class="glyphicon glyphicon-plus"></span> Not Ekle</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/Note/Index"><span class="glyphicon glyphicon-th-list"></span> Notlarım</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/Note/LikedNotes"><span class="glyphicon glyphicon-heart"></span> Beğendiklerim</a></li>
+                                @if (user.IsAdmin)
+                                {
+                                    <li class="divider"></li>
+                                    <li><a href="/Kategori/Create"><span class="glyphicon glyphicon-plus"></span> Kategori Ekle</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="/Kategori/Index"><span class="glyphicon glyphicon-th-list"></span> Kategoriler</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                    <li>
+                        <a href="/Home/Popular">
+                            <span class="glyphicon glyphicon-heart "></span> Popüler
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Home/Index">
+                            <span class="glyphicon glyphicon-th-list "></span> Son Yazılanlar
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Home/About">
+                            <span class="glyphicon glyphicon-info-sign "></span> Hakkımızda
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Home/Contact">
+                            <span class="glyphicon glyphicon-earphone "></span> İletişim
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (user == null)
+                    {
+                        <li>
+                            <a href="/Home/Login">
+                                <span class="glyphicon glyphicon-log-in "></span> Giriş
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Home/Register">
+                                <span class="glyphicon glyphicon-user "></span> Üye Ol 
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="/Home/Profile">
+                                <span class="glyphicon glyphicon-user "></span> @user.Username
+                            </a>
+                        </li>
+                        @*<li class="dropdown">
+                            <a href="/Home/Profile" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="true" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-user"></span> @user.Username
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/Home/Profile">Profil Göster</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/Home/ProfileDuzenle">Profil Düzenle</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/Home/ProfileSil">Profil Sil</a></li>
+                            </ul>
+                        </li>*@
+                        <li>
+                            <a href="/Home/Logout">
+                                <span class="glyphicon glyphicon-log-out "></span> Çıkış
+                            </a>
+                        </li>
+                    }
+
+                </ul>
+
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    @RenderBody()
+
+    @RenderSection("footer",required:false)     @*bazı sayfalarda görünecek bazılarında görünmeyecek*@
+    
+    <script>
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $('.scrollup').fadeIn();
+                } else {
+                    $('.scrollup').fadeOut();
+                }
+            });
+
+            $('.scrollup').click(function () {
+                $("html, body").animate({
+                    scrollTop: 0
+                }, 600);
+                return false;
+            });
+        });
+    </script>
+
+    <div>
+        <article style="height: 1000px">
+            <a href="#" class="scrollup"></a>
+        </article>
+    </div>
+
+</body>
+
+</html>

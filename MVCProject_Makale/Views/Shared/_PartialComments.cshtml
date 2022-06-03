@@ -1,0 +1,64 @@
+﻿@using Makale.Entities
+@model List<Comment>
+@{
+    Kullanici user = (Kullanici)Session["login"];
+}
+
+
+@foreach (var item in Model)
+{
+    <div class="media">
+        <div class="media-left media-middle">
+            <span class="glyphicon glyphicon-comment"></span>
+        </div>
+        <div class="media-body">
+            <div>
+                <span id="yorum_@item.ID" contenteditable="false">
+                    @item.Text
+                </span>
+                @if (user != null && user.ID == item.Kullanici.ID)   //kullanıcı giriş yaptıysa ve bu kullanıcı yorumu yapan kullanıcıysa
+                {
+                    <span>
+                        <button type="button" onclick="yorumislem(this, 'editislem',@item.ID,'#yorum_@item.ID')" data-edit-mode="false" class="btn btn-warning btn-xs">
+                            @*onclick bu butonun kendisine id sini gönderdim  data-edit-mode tıklandı mı tıklanmadı mı*@
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </button>
+                        <button type="button" onclick="yorumislem(this, 'deleteislem',@item.ID,'#yorum_@item.ID')" class="btn btn-danger btn-xs">
+                            <span class="glyphicon glyphicon-trash"></span>
+
+                        </button>
+                    </span>
+                }
+
+                <br />
+                <small>
+                    <span class="glyphicon glyphicon-time"></span> @item.ModifiedDate &nbsp; &nbsp;
+                    <span class="glyphicon glyphicon-user"></span> @item.Kullanici.Username
+                </small>
+            </div>
+
+        </div>
+    </div> @*hazır aldık*@
+}
+
+@if (user != null)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="input-group">
+                <input type="text" id="yorum_text" class="form-control" placeholder="Yorumunuz">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" onclick="yorumislem(this,'insertislem')">Gönder</button>
+                </span>
+            </div><!-- /input-group -->
+        </div>
+    </div>
+
+
+}
+

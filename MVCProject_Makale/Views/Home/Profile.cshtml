@@ -1,0 +1,37 @@
+﻿@using Makale.Entities
+@model Kullanici
+
+
+<div class="container">
+    <div class="row">
+        <h2 style="color:darkred">Profile</h2>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <img src="~/Image/@Model.ProfileImageFile" class="img-circle" width="130" height="130"  />
+        </div>
+        <div class="col-md-8">
+            <h3>@(Model.Name+" "+Model.Surname)</h3>
+            <br />
+            <h4><b style="color:darkred">@Html.DisplayNameFor(model=>model.Username):</b> @Model.Username</h4>
+            <br />
+            <h4><b style="color:darkred">@Html.DisplayNameFor(model=>model.Email):</b> @Model.Email</h4>
+            <br />
+        </div>
+        <div class="col-md-2">
+            <div class="btn-group">
+                <a href="/Home/Profile" class="dropdown-toggle" data-toggle="dropdown">
+                    <span style="color:darkred" class="glyphicon glyphicon-cog"></span> <b style="color:darkred">Seçenekler</b>
+                    <span style="color:darkred" class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/Home/ProfileDuzenle"><span class="glyphicon glyphicon-edit"></span> Profil Düzenle</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/Home/ProfileSil" onclick="return confirm('Hesabınızı silmek istediğinize emin misiniz?')"><span class="glyphicon glyphicon-trash"></span> Profil Sil</a></li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+</div>

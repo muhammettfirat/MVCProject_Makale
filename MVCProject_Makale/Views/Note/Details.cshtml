@@ -1,0 +1,88 @@
+﻿@model Makale.Entities.Note
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <h2 style="color:darkred">Not Detay</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Text)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Text)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LikeCount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LikeCount)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsDraft)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsDraft)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CreatDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ModifiedDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ModifiedDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ModifiedUsername)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ModifiedUsername)
+            </dd>
+
+        </dl>
+        
+        <div class="col-md-10 col-md-offset-1">
+            <p>
+                <a href="/Note/Edit/@Model.ID" class="btn btn-warning" title="Düzenle">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>
+                <a href="/Note/Index" class="btn btn-default">
+                    <span class="glyphicon glyphicon-arrow-left"></span> Listele
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
+

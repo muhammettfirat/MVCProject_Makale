@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Makale.Entities.Kategori>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <h2 style="color:darkred">Kategoriler</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <p>
+            
+            <a href="/Kategori/Create" class="btn btn-primary">
+                <span class="glyphicon glyphicon-plus"></span> <b>Yeni</b>
+            </a>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreateDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModifiedDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModifiedUsername)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                        
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                        
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreateDate)
+                        
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedDate)
+                        
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedUsername)
+                        
+                    </td>
+                    <td>
+                        <a href="/Kategori/Edit/@item.ID" class="btn btn-warning btn-xs" title="Düzenle">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                        <a href="/Kategori/Details/@item.ID" class="btn btn-info btn-xs" title="Detay">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </a>
+                        <a href="/Kategori/Delete/@item.ID" class="btn btn-danger btn-xs" title="Sil">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    
+</div>
+

@@ -1,0 +1,38 @@
+﻿@model List<string>
+@{
+    ViewBag.Title = "Geçersiz İşlem";
+}
+<link href="~/Content/Login_CSS.css" rel="stylesheet" />
+
+
+<section class="login-info">
+    <div class="container">
+        <div class="row main">
+            <div class="form-header">
+                <h1 class="text-center ">Yönlendiriliyorsunuz </h1>
+            </div>
+            <div class="main-content">
+                <h2><span class="glyphicon glyphicon-ok"></span>Geçersiz İşlem</h2>
+                <hr />
+                <p>
+                    @foreach (var item in Model)
+                    {
+                        @item.ToString() <br />
+                    }
+                </p>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<script>
+    $(function () {
+        $("footer").parent().hide();    //footer ı gizle methodu
+        setTimeout(function () {
+            window.location = "/Home/Index"
+        }, 5000);
+    });
+</script>*@
+

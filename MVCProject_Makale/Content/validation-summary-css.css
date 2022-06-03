@@ -1,0 +1,9 @@
+﻿.validation-summary-errors {
+    border: 2px dotted azure;
+    background-color: azure;
+    border-radius: 5px;
+}
+.validation-summary-errors ul {
+    list-style-type: none;
+    padding: 10px;
+}

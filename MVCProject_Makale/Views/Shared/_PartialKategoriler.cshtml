@@ -1,0 +1,21 @@
+﻿@using Makale.BusinessLayer
+@using Makale.Entities
+@{ 
+    KategoriYonet ky = new KategoriYonet();
+    List<Kategori> liste = ky.KategoriListesi();
+}
+
+<p class="lead">Kategoriler</p>
+<div class="list-group">
+    <a href="/Home/Index" class="list-group-item">
+        Tümü
+    </a>
+    @foreach (var item in liste)
+    {
+        <a href="/Home/Kategori/@item.ID" class="list-group-item">
+            <span class="glyphicon glyphicon-arrow-right"></span>
+            @item.Title
+        </a>
+    }
+
+</div>
